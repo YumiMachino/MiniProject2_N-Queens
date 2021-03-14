@@ -7,15 +7,9 @@
 
 import Foundation
 
-print("Hello!")
+
 var board = Board(size:8)
-board.place(row: 0, col: 5)
-print(board.isSafe(row: 0, col: 4))
-//print(board)
-print(board.description)
+solveQueens(board: &board)
+print(count)
 
-
-//solveQueens(board: &board)
-//print(count)
-
-temp(board: &board, queenCount: 8)
+//temp(board: &board, queenCount: 0)

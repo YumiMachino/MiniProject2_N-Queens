@@ -16,32 +16,14 @@ import Foundation
 /// - Your total recursive calls should not exceed 120 times.
 
 var count = 0
-var queenCount = 8
 func solveQueens(board: inout Board) {
 	count += 1
-    // place 8 queens safely
-    // recursive solution using isSafe function and print
-    /// base case: no more choces to make
-    if queenCount == 0 {
-        print(board.description)
-        return
-    } else {
-        for i in 1...8 {
-            for j in 1...8 {
-                if board.isSafe(row: i, col: j) {
-                    print("aaaa")
-                    board.place(row: i, col: j)
-                    solveQueens(board: &board)
-                    queenCount = queenCount - 1
-                }
-            }
-        }
-    }
+    temp(board: &board, queenCount: 0)
 }
 
 func temp(board: inout Board, queenCount: Int) {
     // base case: no more choices to make
-    if queenCount == 3 {
+    if queenCount == 8 {
         print("end")
         print(board.description)
         return
@@ -51,9 +33,8 @@ func temp(board: inout Board, queenCount: Int) {
                 // constraints
                 if board.isSafe(row: i, col: j) {
                     board.place(row: i, col: j)
-                    temp(board: &board, queenCount: queenCount - 1)
+                    temp(board: &board, queenCount: queenCount + 1)
                     print(queenCount)
-                    
                 }
             }
         }
@@ -64,26 +45,3 @@ func temp(board: inout Board, queenCount: Int) {
 // one solution least recursivv calls
 // count how many recursive calls made (should be less than 114)
 
-
-
-
-//func temp(queenCount: Int) {
-//    /// base case: no more choices to make
-//    if queenCount == 0 {
-//        print(board)
-//        print("aaaaa")
-//        return
-//    }
-//    /// choices from 1 to 8
-//    for i in 0...7 {
-//        for j in 0...7 {
-//        // これまでのchoice で確認する必要あり
-//        if board.isSafe(row: i, col: j) {
-//        board.place(row: i, col: j)
-//        temp(queenCount: queenCount - 1)
-//        } else {
-//            print("not")
-//        }
-//       }
-//    }
-//}
