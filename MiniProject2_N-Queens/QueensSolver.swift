@@ -18,30 +18,35 @@ import Foundation
 var count = 0
 func solveQueens(board: inout Board) {
 	count += 1
-    temp(board: &board, queenCount: 0)
+    
 }
 
-func temp(board: inout Board, queenCount: Int) {
-    // base case: no more choices to make
-    if queenCount == 8 {
-        print("end")
-        print(board.description)
-        return
+var N = 8;
+var queenCount = 0;
+func temp(board: inout Board, col: Int) {
+    // when col is equal or more than 8
+    if col >= N {
+        print(board)
     } else {
-        for i in 0...8{
-            for j in 0...8 {
-                // constraints
-                if board.isSafe(row: i, col: j) {
-                    board.place(row: i, col: j)
-                    temp(board: &board, queenCount: queenCount + 1)
-                    print(queenCount)
+        for i in 0...N {
+            // if ok to place
+            if board.isSafe(row: i, col: col){
+                board.place(row: i, col: col)
+                queenCount += 1
+                //queencount and col count is the same(make sure a queen is placed in a col)
+                if queenCount == col {
+                temp(board: &board, col: col + 1)
                 }
+              
             }
-        }
+//            if !board.isSafe(row: i, col: col) && i == N {
+//                temp(board: &board, col: col)
+//            }
     }
+    // can not place a queen in a particular col
+    // need to go back and change the pos
+}
 }
 
-
-// one solution least recursivv calls
+// one solution least recursiv calls
 // count how many recursive calls made (should be less than 114)
-

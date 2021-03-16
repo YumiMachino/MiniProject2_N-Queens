@@ -9,7 +9,8 @@ import Foundation
 
 
 var board = Board(size:8)
-solveQueens(board: &board)
-print(count)
+//solveQueens(board: &board)
+//print(count)
+print("Begin")
+temp(board: &board, col: 0)
 
-//temp(board: &board, queenCount: 0)
